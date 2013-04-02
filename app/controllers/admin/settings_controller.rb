@@ -48,6 +48,32 @@ class Admin::SettingsController < Admin::BaseController
       redirect_to :action => 'update_database'
     end
   end
+  
+  def import_feed
+    if this_blog.base_url.blank?
+      this_blog.base_url = blog_base_url
+    end
+    load_settings
+  end
+  
+  def import
+    feed = Feedzirra::Feed.fetch_and_parse(params[:feed][:url])
+    feed.entries.each do |item|
+      a = Article.new
+      a.author = 'admin'
+      a.user = current_user
+      a.title = item.title
+      a.body = item.summary
+      a.created_at = item.published
+      a.published_at = item.published
+      a.published = true
+      a.allow_pings = true
+      a.allow_comments = true     
+      a.save
+    end
+    flash[:notice] = _("#{feed.entries.size} posts are imported successfully")
+    redirect_to :controller => "content"
+  end
 
   private
   def load_settings

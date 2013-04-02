@@ -1,0 +1,14 @@
+<% @page_heading = _('General settings') %>
+
+<%= form_tag :action => 'import' do %>
+
+<fieldset class='form-horizontal'>
+  <legend><%= _("Import Feed")%></legend>
+    <div class='control-group'>
+      <label class='control-label' for="setting_blog_name"><%= _("Feed URL")%></label>
+      <div class='controls'>
+        <%= text_field(:feed, :url, {:class => 'span6', :size => 256 })%> <%= submit_tag "Import" %>
+      </div>
+    </div>
+</fieldset>
+<% end %>

@@ -22,7 +22,7 @@ gem 'acts_as_tree_rails3'
 gem 'fog'
 gem 'recaptcha', :require => 'recaptcha/rails', :branch => 'rails3'
 gem 'carrierwave'
-gem 'feedtools'
+gem 'feedzirra'
 
 gem 'prototype-rails', '~> 3.2.1'
 gem 'prototype_legacy_helper', '0.0.0', :git => 'http://github.com/rails/prototype_legacy_helper.git'
@@ -36,4 +36,5 @@ group :development, :test do
   gem 'rspec-rails', '~> 2.12.0'
   gem 'simplecov', :require => false
   gem 'pry-rails'
+  gem 'sqlite3'
 end
